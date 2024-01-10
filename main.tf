@@ -36,7 +36,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 resource "aws_subnet" "tf-public" {
-  # Number of public subnet is defined in vars
+  # Number of public subnet 
   count = 2
 
  
@@ -50,7 +50,7 @@ resource "aws_subnet" "tf-public" {
 }
 
 resource "aws_subnet" "tf-private-subnet" {
-  # Number of private subnet is defined in vars
+  # Number of private subnet
   count = 2
 
   cidr_block        = "10.0.${count.index}.0/24"
