@@ -61,7 +61,25 @@ resource "aws_subnet" "tf-private-subnet" {
   }
 }
 
+resource "aws_security_group" "sg-bastion" {
+  name = "sg-bastion"
 
+  #Incoming traffic
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  #Outgoing traffic
+  egress {
+    from_port = 0
+    protocol = "-1"
+    to_port = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 
 resource "aws_instance" "Bastion" {
@@ -69,7 +87,8 @@ resource "aws_instance" "Bastion" {
   instance_type = "t2.micro"
   depends_on = [aws_internet_gateway.gw] 
   subnet_id     = "subnet-0bc9020e6f0896655"
-   associate_public_ip_address = "true"
+  associate_public_ip_address = "true"
+security_groups = ["sg-bastion"]
  }
 
 
