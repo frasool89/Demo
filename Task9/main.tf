@@ -200,8 +200,8 @@ provisioner remote-exec{
     
     inline = [
         "sudo yum install -y nginx",
-        "sudo systemctl start nginx"
-      # "sudo echo 'Hello From EC2#2' >  /usr/share/nginx/html/index.html "
+        "sudo systemctl start nginx",
+        "sudo echo 'Hello From EC2#2' >  /usr/share/nginx/html/index.html "
     ]
    }
  
